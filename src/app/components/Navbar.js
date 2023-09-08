@@ -1,7 +1,23 @@
+"use client"
 import Link from 'next/link';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Navbar = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setIsLoggedIn(false);
+  };
   return (
     <nav className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-3">
@@ -14,9 +30,22 @@ const Navbar = () => {
             </Link>
           </div>
           <div className="flex space-x-4">
-            <Link href="/listingsAndReviews" className="text-gray-600 hover:text-gray-900">Listings And Reviews</Link>
-            <Link href="/register" className="text-gray-600 hover:text-gray-900">Register</Link>
-            <Link href="/login" className="text-gray-600 hover:text-gray-900">Login</Link>
+          <Link href="/listingsAndReviews" className="text-gray-600 hover:text-gray-900">Listings And Reviews</Link>
+          {isLoggedIn ? (
+            <>
+              <Link href="/dashboard" className="text-gray-600 hover:text-gray-900">
+                    Dashboard
+              </Link>
+              <button onClick={handleLogout} className="text-gray-600 hover:text-gray-900">
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link href="/register" className="text-gray-600 hover:text-gray-900">Register</Link>
+              <Link href="/login" className="text-gray-600 hover:text-gray-900">Login</Link>
+            </>
+          )}
           </div>
         </div>
       </div>

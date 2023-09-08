@@ -8,8 +8,7 @@ const RegisterPage = () => {
     birthDate: '',
     email: '',
     password: '',
-    passwordConfirm: '',
-    role: 'user',
+    passwordConfirm: ''
   });
   const [errors, setErrors] = useState({});
   const [userRegistered, setUserRegistered] = useState(false);
@@ -109,21 +108,6 @@ const RegisterPage = () => {
               onChange={handleChange}
               required
             />
-          </div>
-          <div className="mb-4">
-            <label htmlFor="role" className="text-gray-600 block mb-2">Role</label>
-            <span className='text-red-500 text-sm'>{ getErrors('role')[0]?.msg }</span>
-            <select
-              id="role"
-              name="role"
-              className="border rounded-lg p-2 w-full"
-              value={formData.role}
-              onChange={handleChange}
-              required
-            >
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-            </select>
           </div>
           <div className="mb-4">
             <label htmlFor="password" className="text-gray-600 block mb-2">Password</label>
