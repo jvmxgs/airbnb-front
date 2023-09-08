@@ -4,10 +4,10 @@ WORKDIR /var/www
 
 COPY package*.json .
 
-RUN npm install -g next pnpm
+RUN npm install -g pnpm
 
-RUN npm install
+RUN pnpm install
 
 EXPOSE 3000
 
-CMD ["next", "dev"]
+CMD ["pnpm", "dev"]
