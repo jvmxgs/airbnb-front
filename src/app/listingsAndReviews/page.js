@@ -2,6 +2,8 @@
 import { useState, useEffect } from 'react';
 import Loading from '../components/Loading'
 import CustomModal from '../components/CustomModal'
+import Button from '@mui/material/Button';
+import Table from '../components/Table'
 
 const ListingsAndReviewsPage = () => {
   const [loading, setLoading] = useState(true)
@@ -135,8 +137,13 @@ const ListingsAndReviewsPage = () => {
                       className="bg-babu hover:bg-arches text-white py-2 px-4 rounded-lg"
                       disabled={page === totalPages || loading}
                     >
-                      Next Page
+                      &gt;
                     </button>
+                    <Button
+                      variant="contained"
+                      className="bg-babu hover:bg-arches text-white py-2 px-4 rounded-lg"
+                      disabled={page === totalPages || loading}
+                    >&gt;</Button>
                     <button
                       onClick={() => handlePageChange(totalPages)}
                       className="bg-babu hover:bg-arches text-white py-2 px-4 rounded-lg"
@@ -201,6 +208,7 @@ const ListingsAndReviewsPage = () => {
         
         )}
       </CustomModal>
+      <Table></Table>
     </div>
   );
 };
