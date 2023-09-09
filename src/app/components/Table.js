@@ -115,14 +115,20 @@ export default function CustomPaginationActionsTable() {
     setPage(0);
   };
 
+  const titles = [
+    {title: 'Desert'},
+    {title: 'Calories', align: 'right'},
+    {title: 'Fat', align: 'right'}
+  ];
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 500 }} aria-label="custom pagination table">
         <TableHead>
-          <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
+          <TableRow className="bg-rausch">
+            {titles.map(title => (
+              <TableCell className="text-white text-md font-bold" align={ title.align }>{ title.title }</TableCell>
+            ))}
           </TableRow>
         </TableHead>
         <TableBody>
