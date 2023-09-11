@@ -114,7 +114,7 @@ const ListingsAndReviewsPage = () => {
                         page === 1 ? 'cursor-not-allowed' : ''
                       }`}
                     >
-                      Previous Page
+                      &lt;
                     </button>
                   </div>
                   <div className="font-medium">
@@ -139,11 +139,11 @@ const ListingsAndReviewsPage = () => {
                     >
                       &gt;
                     </button>
-                    <Button
+                    {/* <Button
                       variant="contained"
                       className="bg-babu hover:bg-arches text-white py-2 px-4 rounded-lg"
                       disabled={page === totalPages || loading}
-                    >&gt;</Button>
+                    >&gt;</Button> */}
                     <button
                       onClick={() => handlePageChange(totalPages)}
                       className="bg-babu hover:bg-arches text-white py-2 px-4 rounded-lg"
@@ -208,7 +208,7 @@ const ListingsAndReviewsPage = () => {
         
         )}
       </CustomModal>
-      <Table></Table>
+      {/* <Table></Table> */}
     </div>
   );
 };

@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
 
     if (storedToken) {
       setToken(storedToken)
-      setUser(user)
+      setUser(storedUser)
       setIsLoggedIn(true)
     }
   }, [])

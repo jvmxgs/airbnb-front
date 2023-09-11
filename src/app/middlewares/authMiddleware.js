@@ -8,7 +8,7 @@ export function requireAuthMiddleware(Component) {
 
     if (!isLoggedIn) {
       router.push('/login')
-      return null
+      return
     }
 
     return <Component />
