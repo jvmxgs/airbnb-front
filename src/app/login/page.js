@@ -1,18 +1,22 @@
 'use client'
 import { useState } from 'react';
+import { useAuth } from '../contexts/authContext'
+import { requireGuestMiddleware } from '../middlewares/guestMiddleware'
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' })
-  const [errorMessage, setErrorMessage] = useState(null);
-
+  const [errorMessage, setErrorMessage] = useState(null)
+  const { login } = useAuth()
+  
+  
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+    const { name, value } = e.target
+    setFormData({ ...formData, [name]: value })
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Send a POST request to your login API endpoint with the formData
+    e.preventDefault()
+
     try {
       const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
@@ -20,21 +24,20 @@ const Login = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-      });
+      })
 
       if (response.ok) {
-        const data = await response.json();
-        // Save the token to localStorage
-        localStorage.setItem('token', data.token);
-        // Redirect to a protected route or display a success message
-        // Example: router.push('/dashboard');
+        const data = await response.json()
+        localStorage.setItem('token', data.data.token)
+        localStorage.setItem('user', JSON.stringify(data.data.user))
+        login(data)
       } else {
         const res = await response.json()
         setErrorMessage(res.message)
-        console.error('Login failed');
+        console.error('Login failed')
       }
     } catch (error) {
-      console.error('An error occurred:', error);
+      console.error('An error occurred:', error)
     }
   };
 
@@ -88,4 +91,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default requireGuestMiddleware(Login)

@@ -1,23 +1,11 @@
 "use client"
-import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
+import Link from 'next/link'
+import React, { useState, useEffect } from 'react'
+import { useAuth } from '../contexts/authContext'
 
 const Navbar = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { logout, isLoggedIn } = useAuth()
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, []);
-
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    setIsLoggedIn(false);
-  };
   return (
     <nav className="bg-white shadow-md">
       <div className="container mx-auto px-4 py-3">
@@ -36,7 +24,7 @@ const Navbar = () => {
               <Link href="/dashboard" className="text-gray-600 hover:text-gray-900">
                     Dashboard
               </Link>
-              <button onClick={handleLogout} className="text-gray-600 hover:text-gray-900">
+              <button onClick={logout} className="text-gray-600 hover:text-gray-900">
                 Logout
               </button>
             </>

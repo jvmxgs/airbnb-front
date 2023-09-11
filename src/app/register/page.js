@@ -1,6 +1,7 @@
 'use client'
-import Link from 'next/link';
-import React, { useState } from 'react';
+import Link from 'next/link'
+import React, { useState } from 'react'
+import { requireGuestMiddleware } from '../middlewares/guestMiddleware'
 
 const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -9,10 +10,9 @@ const RegisterPage = () => {
     email: '',
     password: '',
     passwordConfirm: ''
-  });
-  const [errors, setErrors] = useState({});
-  const [userRegistered, setUserRegistered] = useState(false);
-
+  })
+  const [errors, setErrors] = useState({})
+  const [userRegistered, setUserRegistered] = useState(false)
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -148,4 +148,4 @@ const RegisterPage = () => {
   )
 };
 
-export default RegisterPage;
+export default requireGuestMiddleware(RegisterPage)
