@@ -5,7 +5,6 @@ import { useAuth } from '../contexts/authContext'
 import Loading from '../components/Loading'
 
 const Dashboard = () => {
-  console.log('dashboard loading --------------------------')
   const { user, token } = useAuth()
   const [errors, setErrors] = useState({})
   const [loading, setLoading] = useState(true)
@@ -29,14 +28,14 @@ const Dashboard = () => {
       .then((response) => response.json())
       .then((data) => {
         const items = data.data || []
-        console.log({ items })
-        setAddresses([items])
+        console.log(items)
+        setAddresses(items)
         setLoading(false)
       })
       .catch(err => {
         setLoading(false)
-      });
-  });
+      })
+    }, [user, user._id, token])
 
   const getErrors = (field) => {
     if (! errors.errors) {
@@ -60,7 +59,7 @@ const Dashboard = () => {
 
       if (response.ok) {
         console.log('Address added successfully')
-        setAddresses([newAddress, ...addresses])
+        // setAddresses([newAddress, ...addresses])
         setNewAddress({
           country: '',
           state: '',
