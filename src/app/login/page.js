@@ -28,8 +28,6 @@ const Login = () => {
 
       if (response.ok) {
         const data = await response.json()
-        localStorage.setItem('token', data.data.token)
-        localStorage.setItem('user', JSON.stringify(data.data.user))
         login(data)
       } else {
         const res = await response.json()

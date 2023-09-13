@@ -28,7 +28,6 @@ const Dashboard = () => {
       .then((response) => response.json())
       .then((data) => {
         const items = data.data || []
-        console.log(items)
         setAddresses(items)
         setLoading(false)
       })
@@ -58,8 +57,7 @@ const Dashboard = () => {
       });
 
       if (response.ok) {
-        console.log('Address added successfully')
-        // setAddresses([newAddress, ...addresses])
+        setAddresses([newAddress, ...addresses])
         setNewAddress({
           country: '',
           state: '',

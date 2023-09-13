@@ -8,9 +8,12 @@ export function AuthProvider({ children }) {
   const [token, setToken] = useState(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  const login = (userData) => {
-    setUser(userData)
+  const login = ({ data }) => {
+    setUser(data.user)
+    setToken(data.token)
     setIsLoggedIn(true)
+    localStorage.setItem('token', data.token)
+    localStorage.setItem('user', JSON.stringify(data.user))
   }
 
   const logout = () => {
