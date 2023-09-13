@@ -19,7 +19,7 @@ const Dashboard = () => {
   const [addresses, setAddresses] = useState([])
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/users/${user._id}/addresses`, {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}/addresses`, {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': token
@@ -48,7 +48,7 @@ const Dashboard = () => {
 
   const handleAddAddress = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/users/${user._id}/addresses`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/${user._id}/addresses`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -25,7 +25,7 @@ const ListingsAndReviewsPage = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/listings-and-reviews?page=${page}&perPage=${pageSize}`)
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/listings-and-reviews?page=${page}&perPage=${pageSize}`)
       .then((response) => response.json())
       .then((data) => {
         const items = data.data || []
